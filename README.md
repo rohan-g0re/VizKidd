@@ -1,6 +1,6 @@
 # VizKidd.AI - Technical Content Visualization System
 
-A **React-TypeScript** application that transforms complex textual content into interactive visual representations using **AI-powered concept extraction** and **SVG generation**.
+An application that transforms complex technical content into visual representations using contexually-aware mechanisms.
 
 ## 🏗️ Technical Architecture
 
@@ -17,11 +17,11 @@ A **React-TypeScript** application that transforms complex textual content into 
 - **Custom prompt engineering** for technical visualization generation
 
 ### **Core Features**
+- **Real-time concept visualization and swift navigation**
 - **PDF Processing** (`react-pdf`, `pdfjs-dist`, `@react-pdf/renderer`)
 - **Voice Assistant** with **Web Speech API** integration
 - **Drag-and-drop** file upload (`react-dropzone`)
 - **Mermaid.js** diagram rendering
-- **Real-time concept visualization**
 
 ## 🔧 Technical Implementation
 
@@ -71,48 +71,15 @@ recognition.interimResults = true;
 - **ConceptContext**: Concept extraction, visualization logic
 - **VoiceContext**: Voice assistant state and commands
 
-### **Styling System**
-**Tailwind CSS** with custom configuration:
+## 🎨 UX Features
 
-- **Custom color palette** (`primary`, `background` variants)
-- **Animation keyframes** for smooth transitions
-- **Typography plugin** for content styling
-- **Responsive design** with mobile-first approach
-
-## 🎨 UI/UX Features
-
-- **Parallax scrolling** effects
+- **Parallel scrolling** across tabs
 - **Mapped Navigation across Visualizations**
-- **Tabbed interface** (Input/Visualization)
-- **Expandable visualization** modal
+- **Expandable visualization** screen for closer look
 - **Voice command integration**
 
 
-## 🔌 API Integration
-
-### **Anthropic Claude**
-```typescript
-const anthropic = new Anthropic({
-  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
-  dangerouslyAllowBrowser: true
-});
-```
-
-### **Google Generative AI**
-```typescript
-const genAI = new GoogleGenerativeAI(
-  import.meta.env.VITE_GOOGLE_AI_API_KEY
-);
-```
-## 🛠️ Development Tools
-
-- **ESLint** with React and TypeScript rules
-- **TypeScript** strict mode configuration
-- **PostCSS** with Autoprefixer
-- **Vite** with React plugin and optimizations
-
-
-## 🚀 Quick Start
+## 🚀 Build Your VizKidd.AI
 
 ### **Prerequisites**
 - **Node.js 18+**
@@ -120,7 +87,7 @@ const genAI = new GoogleGenerativeAI(
 - **Anthropic API Key**
 - **Google AI API Key** (optional)
 
-### **Installation**
+### **Step 1: Installation & Setup**
 
 ```bash
 # Clone repository
@@ -134,13 +101,30 @@ npm install
 cp .env.example .env
 ```
 
-### **Environment Variables**
+### **Step 2: API Integration**
+
+#### **Environment Variables**
 ```env
 VITE_ANTHROPIC_API_KEY=your_anthropic_api_key
 VITE_GOOGLE_AI_API_KEY=your_google_ai_key
 ```
 
-### **Development**
+#### **Anthropic Claude Integration**
+```typescript
+const anthropic = new Anthropic({
+  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
+  dangerouslyAllowBrowser: true
+});
+```
+
+#### **Google Generative AI Integration**
+```typescript
+const genAI = new GoogleGenerativeAI(
+  import.meta.env.VITE_GOOGLE_AI_API_KEY
+);
+```
+
+### **Step 3: Development**
 ```bash
 # Start development server
 npm run dev
@@ -155,15 +139,15 @@ npm run preview
 npm run lint
 ```
 
-## 🚀 Build Your VizKidd.AI
+### **Step 4: Production Deployment**
 
-### **Build Configuration**
+#### **Build Configuration**
 ```bash
 npm run build
 # Outputs to dist/ directory
 ```
 
-### **Environment Setup**
+#### **Environment Setup**
 - Configure **API keys** in production environment
 - Set up **CORS** for API endpoints
 - Configure **CDN** for static assets
