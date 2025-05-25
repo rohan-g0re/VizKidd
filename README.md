@@ -55,14 +55,13 @@ recognition.continuous = true;
 recognition.interimResults = true;
 ```
 
-### **PDF Processing Pipeline**
-**Multi-stage PDF text extraction**:
+### **Content Processing Pipeline**
 
-1. **File upload** via drag-and-drop interface
-2. **PDF.js** text extraction
+1. **Content upload (text/pdf/url)** via Paste-controlled or drag-and-drop interface
+2. If Pdf, **PDF.js** is used for text extraction
 3. **Text preprocessing** and chunking
 4. **Concept extraction** via Gemini 2.0 Flash
-5. **SVG generation** for each concept
+5. **SVG generation** for each concept via Claude 3.7 Sonnet
 
 ### **State Management Architecture**
 **React Context** pattern with three main contexts:
@@ -71,7 +70,7 @@ recognition.interimResults = true;
 - **ConceptContext**: Concept extraction, visualization logic
 - **VoiceContext**: Voice assistant state and commands
 
-## 🎨 UX Features
+## UX Features
 
 - **Parallel scrolling** across tabs
 - **Mapped Navigation across Visualizations**
@@ -82,83 +81,27 @@ recognition.interimResults = true;
 ## 🚀 Build Your VizKidd.AI
 
 ### **Prerequisites**
-- **Node.js 18+**
-- **npm** or **yarn**
-- **Anthropic API Key**
-- **Google AI API Key** (optional)
+- **Node.js 18+** (see `requirements.txt` for full dependencies)
+- **Anthropic API Key** & **Google AI API Key**
 
-### **Step 1: Installation & Setup**
+### **Setup & Run**
 
 ```bash
-# Clone repository
+# Clone and install
 git clone <repository-url>
 cd VizCon.AI
-
-# Install dependencies
 npm install
 
-# Environment setup
+# Configure environment
 cp .env.example .env
-```
+# Add your API keys to .env file:
+# VITE_ANTHROPIC_API_KEY=your_key
+# VITE_GOOGLE_AI_API_KEY=your_key
 
-### **Step 2: API Integration**
-
-#### **Environment Variables**
-```env
-VITE_ANTHROPIC_API_KEY=your_anthropic_api_key
-VITE_GOOGLE_AI_API_KEY=your_google_ai_key
-```
-
-#### **Anthropic Claude Integration**
-```typescript
-const anthropic = new Anthropic({
-  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
-  dangerouslyAllowBrowser: true
-});
-```
-
-#### **Google Generative AI Integration**
-```typescript
-const genAI = new GoogleGenerativeAI(
-  import.meta.env.VITE_GOOGLE_AI_API_KEY
-);
-```
-
-### **Step 3: Development**
-```bash
-# Start development server
+# Run it 
 npm run dev
 
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Lint code
-npm run lint
 ```
-
-### **Step 4: Production Deployment**
-
-#### **Build Configuration**
-```bash
-npm run build
-# Outputs to dist/ directory
-```
-
-#### **Environment Setup**
-- Configure **API keys** in production environment
-- Set up **CORS** for API endpoints
-- Configure **CDN** for static assets
-
-## 📊 Performance Optimizations
-
-- **Code splitting** with dynamic imports
-- **Lazy loading** for heavy components
-- **SVG optimization** for faster rendering
-- **Bundle analysis** with Vite build tools
-- **Image optimization** for landing page assets
 
 ## 📈 Scalability Features
 
@@ -166,3 +109,12 @@ npm run build
 - **Context-based state management** for scalable state
 - **Service layer abstraction** for API integrations
 - **Component composition** for reusable UI elements
+
+
+## 📊 Performance Optimizations
+
+- **SVG utlization** for faster rendering
+- **API Parallelization** nfor conrtent extraction and svg generation
+- **Bundle analysis** with Vite build tools
+
+#### **print ("GG")**
