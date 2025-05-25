@@ -1,99 +1,184 @@
-# VizCon.AI
+# VizKidd.AI - Technical Content Visualization System
 
-A powerful AI-powered visualization tool that converts text and documents into interactive visual representations using advanced AI models.
+A **React-TypeScript** application that transforms complex textual content into interactive visual representations using **AI-powered concept extraction** and **SVG generation**.
 
-## Features
+## 🏗️ Technical Architecture
 
-- 📄 PDF text extraction and processing
-- 🤖 AI-powered concept extraction using Claude and Gemini
-- 🎨 Dynamic SVG visualization generation
-- 🎙️ Voice interaction capabilities
-- 📱 Responsive modern UI with dark theme
+### **Frontend Stack**
+- **React 18.3.1** with **TypeScript 5.5.3**
+- **Vite 5.4.2** for build tooling and development server
+- **Tailwind CSS 3.4.1** with custom design system
+- **Lucide React** for iconography
+- **React Context API** for state management
 
-## Setup
+### **AI Integration**
+- **Anthropic Claude API** (`@anthropic-ai/sdk`) for concept extraction and SVG generation
+- **Google Generative AI** (`@google/generative-ai`) for enhanced AI capabilities
+- **Custom prompt engineering** for technical visualization generation
 
-### Prerequisites
+### **Core Features**
+- **PDF Processing** (`react-pdf`, `pdfjs-dist`, `@react-pdf/renderer`)
+- **Voice Assistant** with **Web Speech API** integration
+- **Drag-and-drop** file upload (`react-dropzone`)
+- **Mermaid.js** diagram rendering
+- **Real-time concept visualization**
 
-- Node.js (v18 or higher)
-- npm or yarn
+## 🔧 Technical Implementation
 
-### Installation
+### **AI-Powered Concept Extraction**
+The application uses **Gemini 2.0 Flash** for extracting key concepts from text:
 
-1. Clone the repository:
+```typescript
+// Concept extraction with structured JSON output
+const concepts = await extractConcepts(inputText);
+// Returns: Array<{title: string, description: string}>
+```
+
+### **SVG Visualization Generation**
+**Claude 3.7 Sonnet** generates technical SVG visualizations:
+
+```typescript
+// SVG generation with technical accuracy
+const svg = await generateSvgVisualization({
+  text: conceptText,
+  type: 'neural-network' | 'flowchart' | 'concept' | 'technical'
+});
+```
+
+### **Voice Assistant Integration**
+**Web Speech API** implementation with custom command handling:
+
+```typescript
+// Voice command processing
+const recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.interimResults = true;
+```
+
+### **PDF Processing Pipeline**
+**Multi-stage PDF text extraction**:
+
+1. **File upload** via drag-and-drop interface
+2. **PDF.js** text extraction
+3. **Text preprocessing** and chunking
+4. **Concept extraction** via Gemini 2.0 Flash
+5. **SVG generation** for each concept
+
+### **State Management Architecture**
+**React Context** pattern with three main contexts:
+
+- **AppContext**: Global UI state, modals, navigation
+- **ConceptContext**: Concept extraction, visualization logic
+- **VoiceContext**: Voice assistant state and commands
+
+### **Styling System**
+**Tailwind CSS** with custom configuration:
+
+- **Custom color palette** (`primary`, `background` variants)
+- **Animation keyframes** for smooth transitions
+- **Typography plugin** for content styling
+- **Responsive design** with mobile-first approach
+
+## 🎨 UI/UX Features
+
+- **Parallax scrolling** effects
+- **Mapped Navigation across Visualizations**
+- **Tabbed interface** (Input/Visualization)
+- **Expandable visualization** modal
+- **Voice command integration**
+
+
+## 🔌 API Integration
+
+### **Anthropic Claude**
+```typescript
+const anthropic = new Anthropic({
+  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
+  dangerouslyAllowBrowser: true
+});
+```
+
+### **Google Generative AI**
+```typescript
+const genAI = new GoogleGenerativeAI(
+  import.meta.env.VITE_GOOGLE_AI_API_KEY
+);
+```
+## 🛠️ Development Tools
+
+- **ESLint** with React and TypeScript rules
+- **TypeScript** strict mode configuration
+- **PostCSS** with Autoprefixer
+- **Vite** with React plugin and optimizations
+
+
+## 🚀 Quick Start
+
+### **Prerequisites**
+- **Node.js 18+**
+- **npm** or **yarn**
+- **Anthropic API Key**
+- **Google AI API Key** (optional)
+
+### **Installation**
+
 ```bash
+# Clone repository
 git clone <repository-url>
 cd VizCon.AI
-```
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
+
+# Environment setup
+cp .env.example .env
 ```
 
-3. Set up environment variables:
-Create a `.env.local` file in the root directory and add your API keys:
-
+### **Environment Variables**
 ```env
-VITE_GEMINI_API_KEY=your_gemini_api_key_here
-VITE_ANTHROPIC_API_KEY=your_anthropic_api_key_here
+VITE_ANTHROPIC_API_KEY=your_anthropic_api_key
+VITE_GOOGLE_AI_API_KEY=your_google_ai_key
 ```
 
-**Important**: Never commit your `.env` files to version control. They are already included in `.gitignore`.
-
-### Getting API Keys
-
-#### Google Gemini API Key
-1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create a new API key
-3. Copy the key to your `.env.local` file
-
-#### Anthropic Claude API Key
-1. Visit [Anthropic Console](https://console.anthropic.com/)
-2. Create an account and get your API key
-3. Copy the key to your `.env.local` file
-
-### Development
-
-Start the development server:
+### **Development**
 ```bash
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
 ```
 
-The application will be available at `http://localhost:5173`
+## 🚀 Build Your VizKidd.AI
 
-### Building for Production
-
+### **Build Configuration**
 ```bash
 npm run build
+# Outputs to dist/ directory
 ```
 
-## Usage
+### **Environment Setup**
+- Configure **API keys** in production environment
+- Set up **CORS** for API endpoints
+- Configure **CDN** for static assets
 
-1. **Upload Documents**: Drag and drop PDF files or paste text
-2. **AI Processing**: The system extracts concepts using AI models
-3. **Visualizations**: Generate interactive SVG visualizations
-4. **Voice Interaction**: Use voice commands for hands-free operation
+## 📊 Performance Optimizations
 
-## Technologies Used
+- **Code splitting** with dynamic imports
+- **Lazy loading** for heavy components
+- **SVG optimization** for faster rendering
+- **Bundle analysis** with Vite build tools
+- **Image optimization** for landing page assets
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS
-- **AI Models**: Google Gemini 2.0 Flash, Anthropic Claude
-- **PDF Processing**: PDF.js
-- **Voice**: Web Speech API
-- **Visualization**: Custom SVG generation
+## 📈 Scalability Features
 
-## Security
-
-This project uses environment variables to securely manage API keys. Never commit sensitive information to version control.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Ensure all API keys are properly handled via environment variables
-5. Submit a pull request
-
-## License
-
-[Add your license information here] 
+- **Modular architecture** with feature-based organization
+- **Context-based state management** for scalable state
+- **Service layer abstraction** for API integrations
+- **Component composition** for reusable UI elements
